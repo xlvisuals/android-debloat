@@ -1,11 +1,20 @@
-# How to uninstall apps/bloatware from Android phones
+# Shell script to uninstall apps/bloatware from Android phones
 
-The script "uninstall-android-bloat.sh": 
-- uninstalls or disables known pre-installed bloatware on Android phones. 
-- asks to disable AI or the Google App (if an alternative launcher like Niagara is found).
-- prints progress to console and to the file "debloat.log".
+New phones often come bundled with a ton of software that uses space, collects telemetry data, and drains the battery. 
+Many of these apps can't be uninstalled easily. 
 
-Tested on Google Pixel 6a, Google Pixel 9a, and Samsung Galaxy A06 5G.
+The script "uninstall-android-bloat.sh" uses Android's developer mode to:
+- Uninstall or disable pre-installed bloatware from Google, Samsung, Xiaomi, Huawei, Motorola, Sony, Microsoft, AT&T, Verizon, T-Mobile, Facebook, etc.
+- Optionally disable AI features or the Google App (if an alternative launcher like Niagara is found).
+
+All commands and results are printed to console and the file "debloat.log", so you know what got removed and what not.
+
+Tested on Google Pixel 6a, Google Pixel 9a, and Samsung Galaxy A06 5G. 
+
+The changes are reversible. You can reinstall a removed package using the command
+```
+adb shell pm install-existing <packagename>
+```
 
 ## 1. Enable developer mode on phone
 
