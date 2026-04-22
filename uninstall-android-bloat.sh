@@ -70,17 +70,15 @@ else
     SAFE_TO_DISABLE_GOOGLE=false
 fi
 
+echo "" >> "$LOGFILE"
+echo "Installed packages before debloat:" >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+adb shell cmd package list packages >> "$LOGFILE"
 
-echo "" 2>&1 | tee -a "$LOGFILE"
-echo "Installed packages before debloat:" 2>&1 | tee -a "$LOGFILE"
-echo "" 2>&1 | tee -a "$LOGFILE"
-adb shell cmd package list packages 2>&1 | tee -a "$LOGFILE"
-
-echo "" 2>&1 | tee -a "$LOGFILE"
-echo "Disabled packages before debloat:" 2>&1 | tee -a "$LOGFILE"
-echo "" 2>&1 | tee -a "$LOGFILE"
-adb shell cmd package list packages -d 2>&1 | tee -a "$LOGFILE"
-
+echo "" >> "$LOGFILE"
+echo "Disabled packages before debloat:" >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+adb shell cmd package list packages -d >> "$LOGFILE"
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "Uninstalling Google Bloatware" 2>&1 | tee -a "$LOGFILE"
@@ -853,18 +851,6 @@ adb shell pm uninstall -k --user 0 org.simalliance.openmobileapi.service 2>&1 | 
 echo "uninstalling com.duokan.phone.remotecontroller.peel.plugin ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.duokan.phone.remotecontroller.peel.plugin 2>&1 | tee -a "$LOGFILE"
 
-
-echo "" 2>&1 | tee -a "$LOGFILE"
-echo "Installed packages after debloat:" 2>&1 | tee -a "$LOGFILE"
-echo "" 2>&1 | tee -a "$LOGFILE"
-adb shell cmd package list packages 2>&1 | tee -a "$LOGFILE"
-
-echo "" 2>&1 | tee -a "$LOGFILE"
-echo "Disabled packages after debloat:" 2>&1 | tee -a "$LOGFILE"
-echo "" 2>&1 | tee -a "$LOGFILE"
-adb shell cmd package list packages -d 2>&1 | tee -a "$LOGFILE"
-
-
 # --- Interactive AI Disabling Section ---
 
 echo "" 2>&1 | tee -a "$LOGFILE"
@@ -891,7 +877,6 @@ if [[ "$confirm_degemini" =~ ^[Yy]$ ]]; then
 	echo "" 2>&1 | tee -a "$LOGFILE"
     echo "Gemini suppressed. Local Voice-to-Text remains functional." 2>&1 | tee -a "$LOGFILE"
 fi
-
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 read -p "Disable ALL AI features (Gemini, Assistant, AI Core)? [y/N]: " confirm_deai
@@ -926,7 +911,6 @@ if [[ "$confirm_deai" =~ ^[Yy]$ ]]; then
     echo "All AI features have been suppressed." 2>&1 | tee -a "$LOGFILE"
 fi
 
-
 # --- Interactive Google App Disabling Section ---
 
 echo ""
@@ -946,6 +930,16 @@ else
     echo "Disabling com.google.android.googlequicksearchbox.nga_resources" 2>&1 | tee -a "$LOGFILE"
     adb shell pm disable-user --user 0 com.google.android.googlequicksearchbox.nga_resources 2>&1 | tee -a "$LOGFILE"
 fi
+
+echo "" >> "$LOGFILE"
+echo "Installed packages after debloat:" >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+adb shell cmd package list packages >> "$LOGFILE"
+
+echo "" >> "$LOGFILE"
+echo "Disabled packages after debloat:" >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+adb shell cmd package list packages -d >> "$LOGFILE"
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "De-bloat complete." 2>&1 | tee -a "$LOGFILE"
