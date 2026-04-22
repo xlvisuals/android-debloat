@@ -5,6 +5,8 @@ The script "uninstall-android-bloat.sh":
 - asks to disable AI or the Google App (if an alternative launcher like Niagara is found).
 - prints progress to console and to the file "debloat.log".
 
+Tested on Google Pixel 6a, Google Pixel 9a, and Samsung Galaxy A06 5G.
+
 ## 1. Enable developer mode on phone
 
 1. Go to **Settings** \> **About phone**
