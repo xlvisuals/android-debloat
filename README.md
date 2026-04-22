@@ -16,6 +16,9 @@ The changes are reversible. You can reinstall a removed package using the comman
 adb shell pm install-existing <packagename>
 ```
 
+This script is for people that prefer to use their phone primarily for communication and photos (Phone, Camera, Messages, Browser, Email).
+
+
 ## 1. Enable developer mode on phone
 
 1. Go to **Settings** \> **About phone**
