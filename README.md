@@ -1,5 +1,10 @@
 # How to uninstall apps/bloatware from Android phones
 
+The script "uninstall-android-bloat.sh": 
+- uninstalls or disables known pre-installed bloatware on Android phones. 
+- asks to disable AI or the Google App (if an alternative launcher like Niagara is found).
+- prints progress to console and to the file "debloat.log".
+
 ## 1. Enable developer mode on phone
 
 1. Go to **Settings** \> **About phone**
