@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Never touch:
-
+#
 # com.android.systemui (The entire user interface)
 # com.android.settings (Settings menu)
 # com.google.android.ims (Essential for VoLTE, Wi-Fi Calling, and texting)
@@ -12,6 +12,8 @@
 # com.android.phone (Dialing and signals)
 # com.sec.phone (Dialing and signals)
 # com.google.android.gms (Google Play Services)
+# com.android.vending (Google Play Store)
+# com.google.android.inputmethod.latin (Keyboard Gboard)
 # com.google.android.networkstack (Internet connectivity)
 # com.android.bookmarkprovider
 # com.android.cellbroadcastreceiver
@@ -22,6 +24,28 @@
 # com.google.android.settings.biometrics.face.settings (for Face Unlock)
 # com.google.hardware.pixel.biometrics.fingerprint(for Fingerprint Unlock)
 # com.samsung.android.biometrics.app.setting (Fingerprint/Face unlock)
+
+# Google Apps not usually removed:
+#
+# com.google.android.googlequicksearchbox Google (Search)	
+# com.android.chrome (Google Chrome)
+# com.google.android.gm (Gmail)
+# com.google.android.apps.maps (Google Maps)
+# com.google.android.youtube (YouTube)
+# com.google.android.apps.photos (Google Photos)	
+# com.google.android.apps.messaging (Google Messages)
+# com.google.android.dialer (Phone (Dialer)
+# com.google.android.contacts (Contacts)
+# com.google.android.GoogleCamera (Pixel Camera)
+# com.google.android.apps.recorder (Recorder)
+# com.google.android.apps.safetyhub (Personal Safety)
+# com.google.android.apps.wellbeing (Digital Wellbeing)
+# com.google.android.deskclock (Clock)
+# com.google.android.calculator (Calculator)
+# com.google.android.calendar (Calendar)
+# com.google.android.apps.docs (Google Drive)
+# com.google.android.apps.nbu.files (Files by Google)
+
 
 LOGFILE="debloat.log"
 rm "$LOGFILE" &> /dev/null
@@ -80,15 +104,45 @@ echo "Disabled packages before debloat:" >> "$LOGFILE"
 echo "" >> "$LOGFILE"
 adb shell cmd package list packages -d >> "$LOGFILE"
 
+
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "Uninstalling Google Bloatware" 2>&1 | tee -a "$LOGFILE"
 echo "" 2>&1 | tee -a "$LOGFILE"
 
+echo "uninstalling com.google.android.apps.youtube.music" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.youtube.music 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.videos" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.videos 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.books" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.books 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.play.games" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.play.games 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.youtube.kids" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.youtube.kids 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.keep" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.keep 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.magazines" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.magazines 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.walletnfcrel" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.walletnfcrel 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.tachyon" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.tachyon 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.translate" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.translate 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.chromecast.app" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.chromecast.app 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.fitbit.FitbitMobile" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.fitbit.FitbitMobile 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.healthdata" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.healthdata 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.fitness" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.fitness 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.google.android.apps.tips" 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.google.android.apps.tips 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.google.android.retaildemo ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0  &  2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.google.android.apps.retaildemo.preload ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.google.android.apps.retaildemo.preload 2>&1 | tee -a "$LOGFILE"
-
 echo "uninstalling com.google.android.apps.dreamliner" 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.google.android.apps.dreamliner 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.google.android.apps.pixel.familyspace" 2>&1 | tee -a "$LOGFILE"
@@ -117,12 +171,6 @@ echo "uninstalling com.google.pixel.livewallpaper ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.google.pixel.livewallpaper 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.google.pixel.dynamicwallpapers ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.google.pixel.dynamicwallpapers 2>&1 | tee -a "$LOGFILE"
-echo "uninstalling com.verizon.llkagent ..." 2>&1 | tee -a "$LOGFILE"
-adb shell pm uninstall -k --user 0 com.verizon.llkagent 2>&1 | tee -a "$LOGFILE"
-echo "uninstalling com.verizon.mips.services ..." 2>&1 | tee -a "$LOGFILE"
-adb shell pm uninstall -k --user 0 com.verizon.mips.services 2>&1 | tee -a "$LOGFILE"
-echo "uninstalling com.verizon.services ..." 2>&1 | tee -a "$LOGFILE"
-adb shell pm uninstall -k --user 0 com.verizon.services 2>&1 | tee -a "$LOGFILE"
 
 echo "uninstalling com.samsung.android.widget.pictureframe ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.samsung.android.widget.pictureframe 2>&1 | tee -a "$LOGFILE"
@@ -158,7 +206,6 @@ echo "uninstalling com.samsung.android.mapsagent ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.samsung.android.mapsagent 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.samsung.android.storyservice ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.samsung.android.storyservice 2>&1 | tee -a "$LOGFILE"
-
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "Uninstalling MIUI Bloatware" 2>&1 | tee -a "$LOGFILE"
@@ -319,7 +366,6 @@ echo "uninstalling com.xiaomi.simactivate.service ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.xiaomi.simactivate.service 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling org.ifaa.aidl.manager ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 org.ifaa.aidl.manager 2>&1 | tee -a "$LOGFILE"
-
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "Uninstalling Huawei Bloatware" 2>&1 | tee -a "$LOGFILE"
@@ -638,8 +684,12 @@ echo "uninstalling vzw.hs.android.modlite ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 vzw.hs.android.modlite 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling samsung.vvm ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 samsung.vvm 2>&1 | tee -a "$LOGFILE"
-echo "uninstalling vznavigator.[You_Model_Here] ..." 2>&1 | tee -a "$LOGFILE"
-adb shell pm uninstall -k --user 0 vznavigator.[You_Model_Here] 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.verizon.llkagent ..." 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.verizon.llkagent 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.verizon.mips.services ..." 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.verizon.mips.services 2>&1 | tee -a "$LOGFILE"
+echo "uninstalling com.verizon.services ..." 2>&1 | tee -a "$LOGFILE"
+adb shell pm uninstall -k --user 0 com.verizon.services 2>&1 | tee -a "$LOGFILE"
 
 echo "" 2>&1 | tee -a "$LOGFILE"
 echo "Uninstalling AT&T Bloatware" 2>&1 | tee -a "$LOGFILE"
