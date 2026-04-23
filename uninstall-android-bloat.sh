@@ -572,8 +572,6 @@ echo "uninstalling com.samsung.android.app.parentalcare ..." 2>&1 | tee -a "$LOG
 adb shell pm uninstall -k --user 0 com.samsung.android.app.parentalcare 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.samsung.android.spay ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.samsung.android.spay 2>&1 | tee -a "$LOGFILE"
-echo "uninstalling com.google.android.apps.messaging ..." 2>&1 | tee -a "$LOGFILE"
-adb shell pm uninstall -k --user 0 com.google.android.apps.messaging 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.sec.android.app.popupcalculator ..." 2>&1 | tee -a "$LOGFILE"
 adb shell pm uninstall -k --user 0 com.sec.android.app.popupcalculator 2>&1 | tee -a "$LOGFILE"
 echo "uninstalling com.samsung.android.app.notes ..." 2>&1 | tee -a "$LOGFILE"
